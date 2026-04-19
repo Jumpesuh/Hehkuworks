@@ -1,13 +1,10 @@
-import Header from "@/components/Header";
 import ProductCard from "@/components/ProductCard";
 import CartDrawer from "@/components/CartDrawer";
-import Footer from "@/components/Footer";
 import { products } from "@/lib/products";
 
 export default function MallistoPage() {
   return (
     <main>
-      <Header />
       <CartDrawer />
 
       <div className="container" style={{ padding: "60px 0" }}>
@@ -20,8 +17,6 @@ export default function MallistoPage() {
           ))}
         </div>
       </div>
-
-      <Footer />
     </main>
   );
 }

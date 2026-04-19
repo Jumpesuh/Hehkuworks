@@ -1,12 +1,9 @@
-import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import Footer from "@/components/Footer";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <main>
-      <Header />
       <Hero />
 
       <div
@@ -25,7 +22,7 @@ export default function Home() {
           </span>
           <h2 style={{ fontSize: "36px" }}>100 % Kotimaista Käsityötä</h2>
           <p>
-            Jokainen HEHKUWERKS-valaisin saa alkunsa puhtaasta suomalaisesta
+            Jokainen HEHKUWORKS-valaisin saa alkunsa puhtaasta suomalaisesta
             puusta – joko tammesta, koivusta tai männystä. Valmistamme jokaisen
             osan omalla verstaallamme intohimolla ja tarkkuudella.
           </p>
@@ -42,8 +39,6 @@ export default function Home() {
           </Link>
         </div>
       </div>
-
-      <Footer />
     </main>
   );
 }

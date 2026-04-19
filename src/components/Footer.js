@@ -19,7 +19,7 @@ export default function Footer() {
           }}
         >
           <div>
-            <h3 style={{ color: "white" }}>HEHKUWERKS</h3>
+            <h3 style={{ color: "white" }}>HEHKUWORKS</h3>
             <p>
               Aitoa suomalaista käsityötä vuodesta 2024. Jokainen valaisin on
               lupaus laadusta ja luonnon kunnioituksesta.
@@ -30,9 +30,9 @@ export default function Footer() {
             <p>
               Verstas & Showroom:
               <br />
-              Puusepänkatu 5, Lahti
+              Puusepänkatu 5, Hollola
               <br />
-              info@hehkuwerks.fi
+              info@hehkuworks.fi
             </p>
           </div>
           <div>
@@ -61,7 +61,7 @@ export default function Footer() {
             opacity: 0.7,
           }}
         >
-          &copy; 2026 HEHKUWERKS Oy - Kaikki oikeudet pidätetään.
+          &copy; 2026 HEHKUWORKS Oy - Kaikki oikeudet pidätetään.
         </div>
       </div>
     </footer>

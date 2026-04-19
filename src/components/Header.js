@@ -11,7 +11,7 @@ export default function Header() {
     <header>
       <div className="container header-content">
         <Link href="/" className="logo">
-          HEHKU<span>WERKS</span>
+          HEHKU<span>WORKS</span>
         </Link>
 
         <nav className={isMenuOpen ? "active" : ""}>

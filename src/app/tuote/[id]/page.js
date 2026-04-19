@@ -2,9 +2,7 @@
 import { useState, use } from "react";
 import { products } from "@/lib/products";
 import { useCart } from "@/store/useCart";
-import Header from "@/components/Header";
 import CartDrawer from "@/components/CartDrawer";
-import Footer from "@/components/Footer";
 
 export default function ProductPage({ params }) {
   const resolvedParams = use(params);
@@ -26,7 +24,6 @@ export default function ProductPage({ params }) {
 
   return (
     <main>
-      <Header />
       <CartDrawer />
       <div className="container" style={{ padding: "40px 0" }}>
         <button
@@ -111,7 +108,6 @@ export default function ProductPage({ params }) {
           </div>
         </div>
       </div>
-      <Footer />
     </main>
   );
 }
