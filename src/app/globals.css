@@ -20,7 +20,7 @@ body {
 
 h1, h2, h3 { 
     letter-spacing: 1px; 
-    text-transform: uppercase; 
+    text-transform: uppercase;
 }
 
 a { 
@@ -153,6 +153,41 @@ nav a:hover { color: var(--accent-color); }
     transform: translateY(-5px);
 }
 
+/* --- SWIPER KARUSELLIN TYYLIT (MALLISTOSIVU) --- */
+/* --- SWIPER KARUSELLIN TYYLIT (MALLISTOSIVU) --- */
+.swiper-button-next,
+.swiper-button-prev {
+    color: #ffffff !important; /* Muutettu: valkoinen nuoli */
+    
+    width: 28px !important;  /* Muutettu: pienempi koko (oli 35px) */
+    height: 28px !important; /* Muutettu: pienempi koko (oli 35px) */
+    border-radius: 50%;
+    
+    opacity: 0; /* Piilossa oletuksena tietokoneella */
+    transition: opacity 0.2s ease; /* Poistettu taustan värinmuutos-transition */
+}
+
+/* Nuolen kärjen koko */
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    font-size: 12px !important; /* Muutettu: hieman pienempi nuolikuvake */
+    font-weight: bold;
+}
+
+/* Pakotetaan tausta ja väri pysymään TÄYSIN samana, vaikka nuolta hoveraa */
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    
+    color: #ffffff !important; /* Sama väri kuin oletuksena */
+    cursor: pointer;
+}
+
+/* Kun hiiri viedään koko kortin päälle, nuolet pamahtavat nätisti esiin */
+.tuotekortti-container:hover .swiper-button-next,
+.tuotekortti-container:hover .swiper-button-prev {
+    opacity: 1;
+}
+
 /* --- TUOTESIVUN ULKOASU (TIETOKONE) --- */
 .tuotesivu-layout {
     display: flex;
@@ -182,7 +217,7 @@ nav a:hover { color: var(--accent-color); }
     flex: 1;
 }
 
-/* Värinapit */
+/* Värinapit tuotesivulla */
 .vari-nappi {
     background: white;
     border: 1px solid var(--light-wood);
@@ -225,6 +260,18 @@ nav a:hover { color: var(--accent-color); }
     .hero-container { height: 400px; }
     .hero-overlay h2 { font-size: 32px; }
 
+    /* Swiper-nuolet näkyvät puhelimella aina */
+    .swiper-button-next,
+    .swiper-button-prev {
+        opacity: 1;
+        width: 30px !important;
+        height: 30px !important;
+    }
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+        font-size: 14px !important;
+    }
+
     /* Tuotesivun mobiilikeskitykset */
     .tuotesivu-layout {
         flex-direction: column;
@@ -237,7 +284,7 @@ nav a:hover { color: var(--accent-color); }
         width: 100%;
         display: flex;
         justify-content: center;
-        order: 1; /* iFrame nousee puhelimessa ensimmäiseksi */
+        order: 1;
     }
 
     .tuotesivu-info {
@@ -248,7 +295,7 @@ nav a:hover { color: var(--accent-color); }
         align-items: center;
     }
 
-    /* Pakotetaan värilaatikko ja napit keskelle riviä */
+    /* Pakotetaan värilaatikko ja napit keskelle riviä puhelimessa */
     .tuotesivu-info > div {
         display: flex;
         flex-direction: column;
