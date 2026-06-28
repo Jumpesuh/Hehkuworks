@@ -19,7 +19,7 @@ const TUOTETIEDOT = {
     variantit: [
       { vari: "Puu", iframeId: "5561a5587bdd795a6ff4bf4c521c7d12" },
       { vari: "Musta", iframeId: "19e0e85f892126b844c983eb86c1757d" },
-      { vari: "Custom", iframeId: "79a4e17ad6d62852b0d397b68554b92" },
+      { vari: "Custom", iframeId: "79a4e17ad6d62852b0d397b68554b927" },
     ],
   },
   kero: {
