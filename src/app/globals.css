@@ -135,82 +135,25 @@ nav a:hover { color: var(--accent-color); }
 
 .btn-view:hover { background: var(--accent-color); }
 
-/* --- TUOTEGRIDI & HOLVI-IFRAME KORTIT --- */
+/* --- TUOTEGRIDI & PÄÄMALLISTOSIVU --- */
 .product-grid {
     display: grid;
-    /* Luo automaattisesti sarakkeita, jotka sopivat täydellisesti 300px iFrameille */
-    grid-template-columns: repeat(auto-fit, minmax(300px, max-content));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 40px;
     margin-top: 40px;
-    justify-content: center; /* Keskittää tuotteet sivulla */
+    justify-content: center;
 }
 
-.holvi-card {
-    background: transparent; /* Poistetaan Next.js:n oma valkoinen taustalaatikko */
-    padding: 0;
-    width: 300px; /* Pakotetaan laatikko saman levyiseksi kuin Holvin widget */
-    margin: 0 auto;
+.mallisto-linkki-kortti {
+    display: block;
     transition: transform 0.3s ease;
 }
 
-.holvi-card:hover {
+.mallisto-linkki-kortti:hover {
     transform: translateY(-5px);
-    box-shadow: none; /* Ei tuplavarjoja, sillä Holvi tekee jo oman varjonsa */
 }
 
-.holvi-card iframe {
-    width: 300px;
-    height: 360px;
-    border: none;
-    display: block;
-}
-
-/* --- FOOTER --- */
-footer { 
-    background: var(--primary-color); 
-    color: var(--light-wood); 
-    padding: 80px 0 40px 0; 
-    margin-top: 100px; 
-}
-
-.footer-cols { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-    gap: 50px; 
-}
-
-.footer-bottom { 
-    margin-top: 60px; 
-    padding-top: 20px; 
-    border-top: 1px solid #5d4037; 
-    text-align: center; 
-    font-size: 12px; 
-    opacity: 0.7; 
-}
-
-/* --- MOBIILIOPTIMOINTI --- */
-@media (max-width: 768px) {
-    .hamburger { display: block; }
-    
-    nav { 
-        display: none; 
-        width: 100%; 
-        order: 3; 
-        padding-top: 20px; 
-        margin-top: 15px; 
-        border-top: 1px solid var(--light-wood); 
-    }
-    
-    nav.active { display: block; }
-    
-    nav ul { flex-direction: column; gap: 20px; }
-    
-    .hero-container { height: 400px; }
-    
-    .hero-overlay h2 { font-size: 32px; }
-}
-
-/* --- TUOTESIVUN ULKOASU --- */
+/* --- TUOTESIVUN ULKOASU (TIETOKONE) --- */
 .tuotesivu-layout {
     display: flex;
     gap: 60px;
@@ -226,6 +169,13 @@ footer {
 
 .single-holvi-card {
     width: 300px;
+}
+
+.single-holvi-card iframe {
+    width: 300px;
+    height: 500px;
+    border: none;
+    display: block;
 }
 
 .tuotesivu-info {
@@ -256,17 +206,83 @@ footer {
     color: white;
 }
 
-.mallisto-linkki-kortti {
-    transition: transform 0.3s ease;
-}
-.mallisto-linkki-kortti:hover {
-    transform: translateY(-5px);
-}
-
-/* Mobiiliasettelu tuotesivulle */
+/* --- YHTEINEN MOBIILIOPTIMOINTI (PUHELIN) --- */
 @media (max-width: 768px) {
+    .hamburger { display: block; }
+    
+    nav { 
+        display: none; 
+        width: 100%; 
+        order: 3; 
+        padding-top: 20px; 
+        margin-top: 15px; 
+        border-top: 1px solid var(--light-wood); 
+    }
+    
+    nav.active { display: block; }
+    nav ul { flex-direction: column; gap: 20px; }
+    
+    .hero-container { height: 400px; }
+    .hero-overlay h2 { font-size: 32px; }
+
+    /* Tuotesivun mobiilikeskitykset */
     .tuotesivu-layout {
         flex-direction: column;
         gap: 40px;
+        align-items: center;
+        text-align: center;
     }
+
+    .tuotesivu-media {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        order: 1; /* iFrame nousee puhelimessa ensimmäiseksi */
+    }
+
+    .tuotesivu-info {
+        width: 100%;
+        order: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Pakotetaan värilaatikko ja napit keskelle riviä */
+    .tuotesivu-info > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .tuotesivu-info div div {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+}
+
+/* --- FOOTER --- */
+footer { 
+    background: var(--primary-color); 
+    color: var(--light-wood); 
+    padding: 80px 0 40px 0; 
+    margin-top: 100px; 
+}
+
+.footer-cols { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 50px; 
+}
+
+.footer-bottom { 
+    margin-top: 60px; 
+    padding-top: 20px; 
+    border-top: 1px solid #5d4037; 
+    text-align: center; 
+    font-size: 12px; 
+    opacity: 0.7; 
 }
