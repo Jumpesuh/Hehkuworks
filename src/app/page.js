@@ -16,14 +16,17 @@ export default function Home() {
               color: "#a67c52",
               fontWeight: "bold",
               textTransform: "uppercase",
+              letterSpacing: "1px",
             }}
           >
             Meidän tarinamme
           </span>
-          <h2 style={{ fontSize: "36px" }}>100 % Kotimaista Käsityötä</h2>
-          <p>
+          <h2 style={{ fontSize: "36px", marginTop: "10px" }}>
+            100 % Kotimaista Käsityötä
+          </h2>
+          <p style={{ color: "#555" }}>
             Jokainen HEHKUWORKS-valaisin saa alkunsa puhtaasta suomalaisesta
-            puusta – joko tammesta, koivusta tai männystä. Valmistamme jokaisen
+            puusta – joko tammesta, koivusta tai männystä. Valamisemme jokaisen
             osan omalla verstaallamme intohimolla ja tarkkuudella.
           </p>
         </div>
@@ -32,7 +35,7 @@ export default function Home() {
           <Link href="/mallisto">
             <button
               className="btn-view"
-              style={{ width: "auto", padding: "15px 50px", cursor: "pointer" }}
+              style={{ width: "auto", padding: "15px 50px" }}
             >
               Tutustu Mallistoon
             </button>

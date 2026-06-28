@@ -1,10 +1,8 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { useCart } from "@/store/useCart";
 
 export default function Header() {
-  const { cart, toggleCart } = useCart();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -27,7 +25,7 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <a href="#footer" onClick={() => setIsMenuOpen(false)}>
+              <a href="#yhteystiedot" onClick={() => setIsMenuOpen(false)}>
                 Yhteystiedot
               </a>
             </li>
@@ -35,9 +33,6 @@ export default function Header() {
         </nav>
 
         <div className="header-right">
-          <button className="cart-btn" onClick={toggleCart}>
-            Kori ({cart.length})
-          </button>
           <button
             className="hamburger"
             onClick={() => setIsMenuOpen(!isMenuOpen)}

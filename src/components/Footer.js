@@ -1,23 +1,8 @@
 export default function Footer() {
   return (
-    <footer
-      id="yhteystiedot"
-      style={{
-        background: "#3e2723",
-        color: "#e0c9a6",
-        padding: "80px 0 40px 0",
-        marginTop: "100px",
-      }}
-    >
+    <footer id="yhteystiedot">
       <div className="container">
-        <div
-          className="footer-cols"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-            gap: "50px",
-          }}
-        >
+        <div className="footer-cols">
           <div>
             <h3 style={{ color: "white" }}>HEHKUWORKS</h3>
             <p>
@@ -50,17 +35,7 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div
-          className="footer-bottom"
-          style={{
-            marginTop: "60px",
-            paddingTop: "20px",
-            borderTop: "1px solid #5d4037",
-            textAlign: "center",
-            fontSize: "12px",
-            opacity: 0.7,
-          }}
-        >
+        <div className="footer-bottom">
           &copy; 2026 HEHKUWORKS Oy - Kaikki oikeudet pidätetään.
         </div>
       </div>
