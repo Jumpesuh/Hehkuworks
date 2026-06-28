@@ -33,7 +33,7 @@ export default function MallistoPage() {
           </Link>
 
           {/* Kortti 2: Säde */}
-          <Link href="/mallisto/säde" className="mallisto-linkki-kortti">
+          <Link href="/mallisto/sade" className="mallisto-linkki-kortti">
             <div
               style={{
                 padding: "40px",

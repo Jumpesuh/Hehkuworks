@@ -13,7 +13,7 @@ const TUOTETIEDOT = {
       { vari: "Custom", iframeId: "f9bd0779b93d1c552ea5190e41111d47" },
     ],
   },
-  säde: {
+  sade: {
     nimi: "Säde",
     kuvaus: "Jotai hasua Säde",
     variantit: [
