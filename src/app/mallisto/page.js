@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-// Tuodaan Swiper-komponentit ja niiden tyylit
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
@@ -10,46 +9,71 @@ const MALLISTO_TUOTTEET = [
   {
     id: "vieno",
     nimi: "Vieno",
-    kuvat: ["/images/Vieno_puu.jpg", "/images/Vieno_puu_valo.jpg"],
+    kuvat: [
+      "/images/Vieno/Vieno_puu.jpg",
+      "/images/Vieno/Vieno_puu_valo.jpg",
+      "/images/Vieno/Vieno_musta.jpg",
+      "/images/VIeno/Vieno_musta_valo.jpg",
+    ],
   },
   {
     id: "sade",
     nimi: "Säde",
-    kuvat: ["/images/Sade_puu.jpg", "/images/Sade_puu_valo.jpg"],
+    kuvat: [
+      "/images/Sade/Sade_puu.jpg",
+      "/images/Sade/Sade_puu_valo.jpg",
+      "/images/Sade/Sade_musta.jpg",
+      "/images/Sade/Sade_musta_valo.jpg",
+    ],
   },
   {
     id: "kero",
     nimi: "Kero",
     kuvat: [
-      "/images/Kero_puu.jpg",
-      "/images/Kero_puu_valo.jpg",
-      "/images/Kero_musta.jpg",
-      "/images/Kero_musta_valo.jpg",
+      "/images/Kero/Kero_puu.jpg",
+      "/images/Kero/Kero_puu_valo.jpg",
+      "/images/Kero/Kero_musta.jpg",
+      "/images/Kero/Kero_musta_valo.jpg",
     ],
   },
   {
     id: "kaio",
     nimi: "Kaio",
-    kuvat: ["/images/Kaio_puu.jpg", "/images/Kaio_puu_valo.jpg"],
+    kuvat: [
+      "/images/Kaio/Kaio_puu.jpg",
+      "/images/Kaio/Kaio_puu_valo.jpg",
+      "/images/Kaio/Kaio_musta.jpg",
+      "/images/Kaio/Kaio_musta_valo.jpg",
+    ],
   },
   {
     id: "kide",
     nimi: "Kide",
-    kuvat: ["/images/Kide_musta.jpg", "/images/Kide_musta_valo.jpg"],
+    kuvat: [
+      "/images/Kide/Kide_puu.jpg",
+      "/images/Kide/Kide_puu_valo.jpg",
+      "/images/Kide/Kide_musta.jpg",
+      "/images/Kide/Kide_musta_valo.jpg",
+    ],
   },
   {
     id: "sora",
     nimi: "Sora",
-    kuvat: ["/images/Sora_puu.jpg", "/images/Sora_puu_valo.jpg"],
+    kuvat: [
+      "/images/Sora/Sora_puu.jpg",
+      "/images/Sora/Sora_puu_valo.jpg",
+      "/images/Sora/Sora_musta.jpg",
+      "/images/Sora/Sora_musta_valo.jpg",
+    ],
   },
   {
     id: "maininki",
     nimi: "Maininki",
     kuvat: [
-      "/images/Maininki_puu.jpg",
-      "/images/Maininki_puu_valo.jpg",
-      "/images/Maininki_musta.jpg",
-      "/images/Maininki_musta_valo.jpg",
+      "/images/Maininki/Maininki_puu.jpg",
+      "/images/Maininki/Maininki_puu_valo.jpg",
+      "/images/Maininki/Maininki_musta.jpg",
+      "/images/Maininki/Maininki_musta_valo.jpg",
     ],
   },
 ];
@@ -79,8 +103,8 @@ export default function MallistoPage() {
                 {tuote.kuvat.length > 0 ? (
                   <Swiper
                     modules={[Navigation]}
-                    navigation={tuote.kuvat.length > 1} // Näytetään nuolet vain jos yli 1 kuva
-                    loop={tuote.kuvat.length > 1} // PYÖRII IKUISESTI SAMAA RATAA YMPÄRI 🚀
+                    navigation={tuote.kuvat.length > 1}
+                    loop={tuote.kuvat.length > 1}
                     className="mySwiper"
                     style={{ width: "100%", height: "auto" }}
                   >
@@ -144,7 +168,7 @@ export default function MallistoPage() {
                     fontSize: "14px",
                   }}
                 >
-                  Puu | Musta | Custom
+                  Puu | Musta
                 </p>
                 <span
                   className="btn-view"

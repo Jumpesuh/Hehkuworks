@@ -24,11 +24,6 @@ export default function Header() {
                 Mallisto
               </Link>
             </li>
-            <li>
-              <a href="#yhteystiedot" onClick={() => setIsMenuOpen(false)}>
-                Yhteystiedot
-              </a>
-            </li>
           </ul>
         </nav>
 

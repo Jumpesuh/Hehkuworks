@@ -25,9 +25,11 @@ export default function Home() {
             100 % Kotimaista Käsityötä
           </h2>
           <p style={{ color: "#555" }}>
-            Jokainen HEHKUWORKS-valaisin saa alkunsa puhtaasta suomalaisesta
-            puusta – joko tammesta, koivusta tai männystä. Valamisemme jokaisen
-            osan omalla verstaallamme intohimolla ja tarkkuudella.
+            HehkuWorks valmistaa suomalaisesta koivuvanerista käsin tehtyjä
+            valaisimia. Tavoitteenamme on luoda tilaan turvallinen ja pehmeä
+            ilmapiiri, joka auttaa rentoutumaan arjen keskellä. Pehmeä valo
+            muuttaa huoneen hetkessä rauhalliseksi, kutsuvaksi ja pörröiseksi
+            pakopaikaksi.
           </p>
         </div>
 
