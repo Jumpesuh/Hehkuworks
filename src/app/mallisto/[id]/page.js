@@ -14,10 +14,10 @@ const TUOTETIEDOT = {
     korkeus: "33 cm",
     halkaisija: "34 cm",
     kuvat: [
-      "/images/vieno/Vieno_puu.jpg",
-      "/images/vieno/Vieno_puu_valo.jpg",
-      "/images/vieno/Vieno_musta.jpg",
-      "/images/vieno/Vieno_musta_valo.jpg",
+      "/images/Vieno_puu.jpg",
+      "/images/Vieno_puu_valo.jpg",
+      "/images/Vieno_musta.jpg",
+      "/images/Vieno_musta_valo.jpg",
     ],
     variantit: [
       {
@@ -40,10 +40,10 @@ const TUOTETIEDOT = {
     korkeus: "32 cm",
     halkaisija: "34 cm",
     kuvat: [
-      "/images/sade/Sade_puu.jpg",
-      "/images/sade/Sade_puu_valo.jpg",
-      "/images/sade/Sade_musta.jpg",
-      "/images/sade/Sade_musta_valo.jpg",
+      "/images/Sade_puu.jpg",
+      "/images/Sade_puu_valo.jpg",
+      "/images/Sade_musta.jpg",
+      "/images/Sade_musta_valo.jpg",
     ],
     variantit: [
       {
@@ -66,10 +66,10 @@ const TUOTETIEDOT = {
     korkeus: "33 cm",
     halkaisija: "34 cm",
     kuvat: [
-      "/images/kero/Kero_puu.jpg",
-      "/images/kero/Kero_puu_valo.jpg",
-      "/images/kero/Kero_musta.jpg",
-      "/images/kero/Kero_musta_valo.jpg",
+      "/images/Kero_puu.jpg",
+      "/images/Kero_puu_valo.jpg",
+      "/images/Kero_musta.jpg",
+      "/images/Kero_musta_valo.jpg",
     ],
     variantit: [
       {
@@ -92,10 +92,10 @@ const TUOTETIEDOT = {
     korkeus: "36 cm",
     halkaisija: "27 cm",
     kuvat: [
-      "/images/kaio/Kaio_puu.jpg",
-      "/images/kaio/Kaio_puu_valo.jpg",
-      "/images/kaio/Kaio_musta.jpg",
-      "/images/kaio/Kaio_musta_valo.jpg",
+      "/images/Kaio_puu.jpg",
+      "/images/Kaio_puu_valo.jpg",
+      "/images/Kaio_musta.jpg",
+      "/images/Kaio_musta_valo.jpg",
     ],
     variantit: [
       {
@@ -118,10 +118,10 @@ const TUOTETIEDOT = {
     korkeus: "21 cm",
     halkaisija: "23 cm",
     kuvat: [
-      "/images/kide/Kide_puu.jpg",
-      "/images/kide/Kide_puu_valo.jpg",
-      "/images/kide/Kide_musta.jpg",
-      "/images/kide/Kide_musta_valo.jpg",
+      "/images/Kide_puu.jpg",
+      "/images/Kide_puu_valo.jpg",
+      "/images/Kide_musta.jpg",
+      "/images/Kide_musta_valo.jpg",
     ],
     variantit: [
       {
@@ -144,10 +144,10 @@ const TUOTETIEDOT = {
     korkeus: "21 cm",
     halkaisija: "23 cm",
     kuvat: [
-      "/images/sora/Sora_puu.jpg",
-      "/images/sora/Sora_puu_valo.jpg",
-      "/images/sora/Sora_musta.jpg",
-      "/images/sora/Sora_musta_valo.jpg",
+      "/images/Sora_puu.jpg",
+      "/images/Sora_puu_valo.jpg",
+      "/images/Sora_musta.jpg",
+      "/images/Sora_musta_valo.jpg",
     ],
     variantit: [
       {
@@ -170,10 +170,10 @@ const TUOTETIEDOT = {
     korkeus: "37 cm",
     halkaisija: "21 cm",
     kuvat: [
-      "/images/maininki/Maininki_puu.jpg",
-      "/images/maininki/Maininki_puu_valo.jpg",
-      "/images/maininki/Maininki_musta.jpg",
-      "/images/maininki/Maininki_musta_valo.jpg",
+      "/images/Maininki_puu.jpg",
+      "/images/Maininki_puu_valo.jpg",
+      "/images/Maininki_musta.jpg",
+      "/images/Maininki_musta_valo.jpg",
     ],
     variantit: [
       {
