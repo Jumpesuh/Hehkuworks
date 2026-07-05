@@ -99,25 +99,67 @@ nav a:hover { color: var(--accent-color); }
     cursor: pointer;
 }
 
-/* --- HERO-KARUSELLI --- */
+/* --- HERO-KARUSELLI (KORJATTU FADE-SLIDERILLE) --- */
 .hero-container {
     position: relative;
     width: 100%;
-    height: 550px;
+    height: 550px; /* Korkeus tietokoneella */
     overflow: hidden;
     background-color: var(--bg-color);
 }
 
-.hero-overlay {
-    background: rgba(0,0,0,0.3);
-    padding: 40px;
-    border: 1px solid rgba(255,255,255,0.3);
-    backdrop-filter: blur(2px);
-    color: white;
-    text-align: center;
+.hero-slide {
+    /* Pakotetaan taustakuva asettumaan nätisti ja estetään monistuminen */
+    background-repeat: no-repeat !important;
+    background-position: center center !important; /* Pitää valaisimen aina keskellä slidea */
+    background-size: cover !important; /* Skaalaa kuvan täyttämään alueen smoothisti */
 }
 
-.hero-overlay h2 { font-size: 48px; margin: 0; }
+/* Tyylikäs ja tasapainoinen tekstilaatikko kuvan päällä */
+.hero-overlay {
+    background: rgba(62, 39, 35, 0.45); /* Brändin mukainen pehmeä tummanruskea */
+    padding: 35px 60px;
+    border: 1px solid rgba(224, 201, 166, 0.3); /* Siro reuna */
+    backdrop-filter: blur(4px); /* Lasimainen pehmennys taustalle */
+    -webkit-backdrop-filter: blur(4px);
+    color: white;
+    text-align: center;
+    max-width: 90%;
+}
+
+.hero-overlay h2 { 
+    font-size: 42px; 
+    margin: 0 0 10px 0; 
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.hero-overlay p {
+    margin: 0;
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+/* Mobiilioptimointi (Puhelimet) */
+@media (max-width: 768px) {
+    .hero-container {
+        height: 400px; /* Madalletaan ruutua mobiilissa, ettei kuva zoomaannu liikaa */
+    }
+    
+    .hero-overlay {
+        padding: 25px 30px;
+    }
+    
+    .hero-overlay h2 { 
+        font-size: 26px; 
+        letter-spacing: 1px;
+    }
+    
+    .hero-overlay p {
+        font-size: 14px;
+    }
+}
 
 /* --- PAINIKKEET --- */
 .btn-view {
@@ -154,35 +196,34 @@ nav a:hover { color: var(--accent-color); }
 }
 
 /* --- SWIPER KARUSELLIN TYYLIT (MALLISTOSIVU) --- */
-/* --- SWIPER KARUSELLIN TYYLIT (MALLISTOSIVU) --- */
 .swiper-button-next,
 .swiper-button-prev {
-    color: #ffffff !important; /* Muutettu: valkoinen nuoli */
+    color: #ffffff !important; 
     
-    width: 28px !important;  /* Muutettu: pienempi koko (oli 35px) */
-    height: 28px !important; /* Muutettu: pienempi koko (oli 35px) */
+    width: 28px !important;  
+    height: 28px !important; 
     border-radius: 50%;
     
-    opacity: 0; /* Piilossa oletuksena tietokoneella */
-    transition: opacity 0.2s ease; /* Poistettu taustan värinmuutos-transition */
+    opacity: 0; 
+    transition: opacity 0.2s ease; 
 }
 
-/* Nuolen kärjen koko */
+
 .swiper-button-next:after,
 .swiper-button-prev:after {
-    font-size: 12px !important; /* Muutettu: hieman pienempi nuolikuvake */
+    font-size: 12px !important; 
     font-weight: bold;
 }
 
-/* Pakotetaan tausta ja väri pysymään TÄYSIN samana, vaikka nuolta hoveraa */
+
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
     
-    color: #ffffff !important; /* Sama väri kuin oletuksena */
+    color: #ffffff !important; 
     cursor: pointer;
 }
 
-/* Kun hiiri viedään koko kortin päälle, nuolet pamahtavat nätisti esiin */
+
 .tuotekortti-container:hover .swiper-button-next,
 .tuotekortti-container:hover .swiper-button-prev {
     opacity: 1;
@@ -217,7 +258,7 @@ nav a:hover { color: var(--accent-color); }
     flex: 1;
 }
 
-/* Värinapit tuotesivulla */
+
 .vari-nappi {
     background: white;
     border: 1px solid var(--light-wood);
@@ -260,7 +301,7 @@ nav a:hover { color: var(--accent-color); }
     .hero-container { height: 400px; }
     .hero-overlay h2 { font-size: 32px; }
 
-    /* Swiper-nuolet näkyvät puhelimella aina */
+    
     .swiper-button-next,
     .swiper-button-prev {
         opacity: 1;
@@ -272,7 +313,7 @@ nav a:hover { color: var(--accent-color); }
         font-size: 14px !important;
     }
 
-    /* Tuotesivun mobiilikeskitykset */
+    
     .tuotesivu-layout {
         flex-direction: column;
         gap: 40px;
@@ -295,7 +336,7 @@ nav a:hover { color: var(--accent-color); }
         align-items: center;
     }
 
-    /* Pakotetaan värilaatikko ja napit keskelle riviä puhelimessa */
+    
     .tuotesivu-info > div {
         display: flex;
         flex-direction: column;
@@ -332,4 +373,109 @@ footer {
     text-align: center; 
     font-size: 12px; 
     opacity: 0.7; 
+}
+
+
+/* --- SIMPPELI DROPDOWN TYYLI --- */
+.simppeli-dropdown-otsikko:hover span {
+    color: var(--accent-color) !important;
+    transition: color 0.2s ease;
+}
+
+/* Kääre toimii animaation ankkurina */
+.dropdown-wrapper {
+    display: grid;
+    grid-template-rows: 0fr; /* Oletuksena täysin kiinni */
+    overflow: hidden;
+    transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Kun luokka .auki aktivoituu, grid-rivi laajenee pehmeästi sisällön vaatimaan mittaan */
+.dropdown-wrapper.auki {
+    grid-template-rows: 1fr;
+}
+
+/* Itse sisältöalue, joka vain liukuu esiin kääreen sisältä */
+.dropdown-sisalto {
+    min-height: 0;
+    padding-bottom: 20px;
+    padding-top: 5px;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+/* Kun kääre on auki, häivytetään tekstit pehmeästi näkyviin */
+.dropdown-wrapper.auki .dropdown-sisalto {
+    opacity: 1;
+    transition: opacity 0.3s ease 0.05s; 
+}
+
+
+/* --- CSS LOGO (HEHKUWORKS) --- */
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    padding-top: 18px; /* Jätetään tilaa yläpuolen säteille */
+    transition: transform 0.2s ease;
+}
+
+.logo-container:hover {
+    transform: scale(1.02); /* Kevyt eloonherääminen vietäessä hiiri päälle */
+}
+
+/* Valonsäteiden keskipiste ja asettelu */
+.sun-rays {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 20px;
+}
+
+/* Yleiset säännöt yksittäiselle säteelle */
+.ray {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    height: 10px; /* Säteen pituus */
+    background-color: #ff6d00; /* Kuvan mukainen lämmin oranssi */
+    border-radius: 2px;
+    transform-origin: bottom center;
+}
+
+/* Säteiden kulmat ja paikat kaaressa (7 sädettä viuhkana) */
+.ray-1 { transform: translateX(-50%) rotate(-75deg) translateY(-8px); }
+.ray-2 { transform: translateX(-50%) rotate(-50deg) translateY(-8px); }
+.ray-3 { transform: translateX(-50%) rotate(-25deg) translateY(-8px); }
+.ray-4 { transform: translateX(-50%) rotate(0deg)   translateY(-8px); } /* Keskimmäinen pystysuora */
+.ray-5 { transform: translateX(-50%) rotate(25deg)  translateY(-8px); }
+.ray-6 { transform: translateX(-50%) rotate(50deg)  translateY(-8px); }
+.ray-7 { transform: translateX(-50%) rotate(75deg)  translateY(-8px); }
+
+/* HEHKU -tekstin tyylittely */
+.logo-text-hehku {
+    font-size: 28px;
+    font-weight: 400; /* Tasapainoinen, ei liian paksu */
+    color: var(--primary-color, #3e2723);
+    letter-spacing: 5px; /* Leveä, elegantti kirjasinväli */
+    line-height: 1;
+    text-indent: 5px; /* Keskittää tekstin täydellisesti kun letter-spacing on käytössä */
+}
+
+/* WORKS -tekstin tyylittely */
+.logo-text-works {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--primary-color, #3e2723);
+    letter-spacing: 7px; /* Vielä hieman leveämpi, jotta täyttää saman leveyden */
+    line-height: 1;
+    margin-top: 5px; /* Väli HEHKU-sanan alle */
+    text-indent: 7px;
 }

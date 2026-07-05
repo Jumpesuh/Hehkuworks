@@ -3,14 +3,16 @@ import { useState, use } from "react";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
+import Image from "next/image"; // Korjaa ESLint no-img-element -virheen
 import "swiper/css";
 import "swiper/css/navigation";
 
-// Tässä on nyt kaikki 4 kuvaa per valaisin asetettuna juuri antamiesi polkujen mukaan!
 const TUOTETIEDOT = {
   vieno: {
     nimi: "Vieno",
     kuvaus: "",
+    korkeus: "33 cm",
+    halkaisija: "34 cm",
     kuvat: [
       "/images/vieno/Vieno_puu.jpg",
       "/images/vieno/Vieno_puu_valo.jpg",
@@ -18,13 +20,25 @@ const TUOTETIEDOT = {
       "/images/vieno/Vieno_musta_valo.jpg",
     ],
     variantit: [
-      { vari: "Puu", iframeId: "716f7476ed352eaadaed732d69684ebb" },
-      { vari: "Musta", iframeId: "d7e9b7c93999f279f666f5e489550b59" },
+      {
+        vari: "Puu",
+        iframeId: "716f7476ed352eaadaed732d69684ebb",
+        hinta: "379 €",
+        kuvaIndeksi: 0,
+      },
+      {
+        vari: "Musta",
+        iframeId: "d7e9b7c93999f279f666f5e489550b59",
+        hinta: "409 €",
+        kuvaIndeksi: 2,
+      },
     ],
   },
   sade: {
     nimi: "Säde",
     kuvaus: "",
+    korkeus: "32 cm",
+    halkaisija: "34 cm",
     kuvat: [
       "/images/sade/Sade_puu.jpg",
       "/images/sade/Sade_puu_valo.jpg",
@@ -32,13 +46,25 @@ const TUOTETIEDOT = {
       "/images/sade/Sade_musta_valo.jpg",
     ],
     variantit: [
-      { vari: "Puu", iframeId: "5561a5587bdd795a6ff4bf4c521c7d12" },
-      { vari: "Musta", iframeId: "19e0e85f892126b844c983eb86c1757d" },
+      {
+        vari: "Puu",
+        iframeId: "5561a5587bdd795a6ff4bf4c521c7d12",
+        hinta: "379 €",
+        kuvaIndeksi: 0,
+      },
+      {
+        vari: "Musta",
+        iframeId: "19e0e85f892126b844c983eb86c1757d",
+        hinta: "409 €",
+        kuvaIndeksi: 2,
+      },
     ],
   },
   kero: {
     nimi: "Kero",
     kuvaus: "",
+    korkeus: "33 cm",
+    halkaisija: "34 cm",
     kuvat: [
       "/images/kero/Kero_puu.jpg",
       "/images/kero/Kero_puu_valo.jpg",
@@ -46,13 +72,25 @@ const TUOTETIEDOT = {
       "/images/kero/Kero_musta_valo.jpg",
     ],
     variantit: [
-      { vari: "Puu", iframeId: "6c2d7150b17cabf0827f507d1ba34791" },
-      { vari: "Musta", iframeId: "df577b633bcee8dc657bc758ac095106" },
+      {
+        vari: "Puu",
+        iframeId: "6c2d7150b17cabf0827f507d1ba34791",
+        hinta: "349 €",
+        kuvaIndeksi: 0,
+      },
+      {
+        vari: "Musta",
+        iframeId: "df577b633bcee8dc657bc758ac095106",
+        hinta: "379 €",
+        kuvaIndeksi: 2,
+      },
     ],
   },
   kaio: {
     nimi: "Kaio",
     kuvaus: "",
+    korkeus: "36 cm",
+    halkaisija: "27 cm",
     kuvat: [
       "/images/kaio/Kaio_puu.jpg",
       "/images/kaio/Kaio_puu_valo.jpg",
@@ -60,13 +98,25 @@ const TUOTETIEDOT = {
       "/images/kaio/Kaio_musta_valo.jpg",
     ],
     variantit: [
-      { vari: "Puu", iframeId: "ae32fb3fb23ef0b58019c83378590308" },
-      { vari: "Musta", iframeId: "a8b9e53bb6835b8c501053d537e86c9f" },
+      {
+        vari: "Puu",
+        iframeId: "ae32fb3fb23ef0b58019c83378590308",
+        hinta: "349 €",
+        kuvaIndeksi: 0,
+      },
+      {
+        vari: "Musta",
+        iframeId: "a8b9e53bb6835b8c501053d537e86c9f",
+        hinta: "379 €",
+        kuvaIndeksi: 2,
+      },
     ],
   },
   kide: {
     nimi: "Kide",
     kuvaus: "",
+    korkeus: "21 cm",
+    halkaisija: "23 cm",
     kuvat: [
       "/images/kide/Kide_puu.jpg",
       "/images/kide/Kide_puu_valo.jpg",
@@ -74,13 +124,25 @@ const TUOTETIEDOT = {
       "/images/kide/Kide_musta_valo.jpg",
     ],
     variantit: [
-      { vari: "Puu", iframeId: "1016c4561000aabcef6a2c567a56bd75" },
-      { vari: "Musta", iframeId: "15a12b0791ad8e17715970aed9866fcd" },
+      {
+        vari: "Puu",
+        iframeId: "1016c4561000aabcef6a2c567a56bd75",
+        hinta: "299 €",
+        kuvaIndeksi: 0,
+      },
+      {
+        vari: "Musta",
+        iframeId: "15a12b0791ad8e17715970aed9866fcd",
+        hinta: "329 €",
+        kuvaIndeksi: 2,
+      },
     ],
   },
   sora: {
     nimi: "Sora",
     kuvaus: "",
+    korkeus: "21 cm",
+    halkaisija: "23 cm",
     kuvat: [
       "/images/sora/Sora_puu.jpg",
       "/images/sora/Sora_puu_valo.jpg",
@@ -88,13 +150,25 @@ const TUOTETIEDOT = {
       "/images/sora/Sora_musta_valo.jpg",
     ],
     variantit: [
-      { vari: "Puu", iframeId: "2c603313e04e0afe779b45b73f05ee63" },
-      { vari: "Musta", iframeId: "a466bdddd151b5b204a10a78502a1b81" },
+      {
+        vari: "Puu",
+        iframeId: "2c603313e04e0afe779b45b73f05ee63",
+        hinta: "289 €",
+        kuvaIndeksi: 0,
+      },
+      {
+        vari: "Musta",
+        iframeId: "a466bdddd151b5b204a10a78502a1b81",
+        hinta: "319 €",
+        kuvaIndeksi: 2,
+      },
     ],
   },
   maininki: {
     nimi: "Maininki",
     kuvaus: "",
+    korkeus: "37 cm",
+    halkaisija: "21 cm",
     kuvat: [
       "/images/maininki/Maininki_puu.jpg",
       "/images/maininki/Maininki_puu_valo.jpg",
@@ -102,8 +176,18 @@ const TUOTETIEDOT = {
       "/images/maininki/Maininki_musta_valo.jpg",
     ],
     variantit: [
-      { vari: "Puu", iframeId: "507fae44351eda452df7341963ceb7c2" },
-      { vari: "Musta", iframeId: "dae95df372be75608f8beb53d3577f4b" },
+      {
+        vari: "Puu",
+        iframeId: "507fae44351eda452df7341963ceb7c2",
+        hinta: "349 €",
+        kuvaIndeksi: 0,
+      },
+      {
+        vari: "Musta",
+        iframeId: "dae95df372be75608f8beb53d3577f4b",
+        hinta: "379 €",
+        kuvaIndeksi: 2,
+      },
     ],
   },
 };
@@ -116,6 +200,8 @@ export default function TuoteSivu({ params: paramsPromise }) {
   const [valittuVariantti, setValittuVariantti] = useState(
     tuote ? tuote.variantit[0] : null,
   );
+  const [teknisetAuki, setTeknisetAuki] = useState(false);
+  const [swiperInstance, setSwiperInstance] = useState(null);
 
   if (!tuote) {
     return (
@@ -136,6 +222,13 @@ export default function TuoteSivu({ params: paramsPromise }) {
 
   const aktiivinenVariantti = valittuVariantti || tuote.variantit[0];
 
+  const vaihdaVariantti = (variantti) => {
+    setValittuVariantti(variantti);
+    if (swiperInstance) {
+      swiperInstance.slideToLoop(variantti.kuvaIndeksi, 400); // Rullaa karuselissa oikeaan väriin
+    }
+  };
+
   return (
     <main className="container" style={{ padding: "60px 0" }}>
       <Link
@@ -151,15 +244,16 @@ export default function TuoteSivu({ params: paramsPromise }) {
       </Link>
 
       <div className="tuotesivu-layout">
-        {/* VASEN PUOLI: KUVASARJA PÄIVITETYILLÄ 4 KUVALLA */}
+        {/* VASEN PUOLI: KUVASARJA */}
         <div
           className="tuotesivu-media tuotekortti-container"
-          style={{ width: "100%", maxWidth: "450px", position: "relative" }}
+          style={{ width: "100%", maxWidth: "450px" }}
         >
           <Swiper
             modules={[Navigation]}
             navigation={tuote.kuvat.length > 1}
             loop={tuote.kuvat.length > 1}
+            onSwiper={setSwiperInstance}
             className="mySwiper"
             style={{
               width: "100%",
@@ -169,10 +263,16 @@ export default function TuoteSivu({ params: paramsPromise }) {
             }}
           >
             {tuote.kuvat.map((kuvaUrl, index) => (
-              <SwiperSlide key={index}>
-                <img
+              <SwiperSlide
+                key={index}
+                style={{ display: "flex", justifyContent: "center" }}
+              >
+                <Image
                   src={kuvaUrl}
                   alt={`${tuote.nimi} tuotekuva ${index + 1}`}
+                  width={600}
+                  height={600}
+                  sizes="(max-width: 450px) 100vw, 450px"
                   style={{
                     width: "100%",
                     height: "auto",
@@ -185,7 +285,7 @@ export default function TuoteSivu({ params: paramsPromise }) {
           </Swiper>
         </div>
 
-        {/* OIKEA PUOLI: Tuotteen tiedot */}
+        {/* OIKEA PUOLI: TUOTTEEN TIEDOT */}
         <div className="tuotesivu-info" style={{ maxWidth: "550px" }}>
           <span
             style={{
@@ -220,6 +320,17 @@ export default function TuoteSivu({ params: paramsPromise }) {
             </p>
           )}
 
+          <p
+            style={{
+              fontSize: "26px",
+              fontWeight: "bold",
+              color: "var(--primary-color)",
+              margin: "10px 0 25px 0",
+            }}
+          >
+            {aktiivinenVariantti.hinta}
+          </p>
+
           {/* VÄRIN VALINTA */}
           <div
             style={{
@@ -240,7 +351,7 @@ export default function TuoteSivu({ params: paramsPromise }) {
               {tuote.variantit.map((variantti) => (
                 <button
                   key={variantti.vari}
-                  onClick={() => setValittuVariantti(variantti)}
+                  onClick={() => vaihdaVariantti(variantti)}
                   className={`vari-nappi ${aktiivinenVariantti.vari === variantti.vari ? "valittu" : ""}`}
                 >
                   {variantti.vari}
@@ -249,61 +360,90 @@ export default function TuoteSivu({ params: paramsPromise }) {
             </div>
           </div>
 
-          {/* TEKNISET TIEDOT */}
-          <div
-            style={{
-              background: "#fff",
-              border: "1px solid #eee",
-              padding: "20px",
-              borderRadius: "4px",
-              marginBottom: "40px",
-              fontSize: "14px",
-              color: "#444",
-            }}
-          >
-            <h4
-              style={{
-                margin: "0 0 15px 0",
-                color: "#3e2723",
-                fontSize: "15px",
-              }}
-            >
-              TEKNISET TIEDOT:
-            </h4>
+          {/* TEKNISET TIEDOT (SUPERMINIMALISTINEN & NUOLI LÄHELLÄ) */}
+          <div style={{ marginBottom: "35px" }}>
             <div
+              onClick={() => setTeknisetAuki(!teknisetAuki)}
               style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: "10px 20px",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                cursor: "pointer",
+                userSelect: "none",
+                padding: "5px 0",
               }}
+              className="simppeli-dropdown-otsikko"
             >
-              <div>
-                <strong>Tyyppi:</strong> Riippuvalaisin
-              </div>
-              <div>
-                <strong>Halkaisija:</strong> 34 cm
-              </div>
-              <div>
-                <strong>Korkeus:</strong> 33 cm
-              </div>
-              <div>
-                <strong>Lampun kanta:</strong> E27
-              </div>
-              <div>
-                <strong>Johdon pituus:</strong> 80 cm
-              </div>
-              <div>
-                <strong>Max. teho:</strong> 15W LED
-              </div>
-              <div>
-                <strong>IP-luokka:</strong> IP20 (Kuivat tilat)
-              </div>
-              <div>
-                <strong>Takuu:</strong> 1 vuosi
-              </div>
+              <span
+                style={{
+                  fontWeight: "bold",
+                  color: "var(--primary-color)",
+                  letterSpacing: "0.05em",
+                  fontSize: "14px",
+                }}
+              >
+                TEKNISET TIEDOT
+              </span>
+              <span
+                style={{
+                  transform: teknisetAuki ? "rotate(180deg)" : "rotate(0deg)",
+                  transition: "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                  color: "var(--accent-color)",
+                  fontSize: "10px",
+                  display: "inline-block",
+                }}
+              >
+                ▼
+              </span>
             </div>
-            <div style={{ marginTop: "12px", fontSize: "13px", color: "#888" }}>
-              * Valonlähde ei sisälly pakkaukseen.
+
+            <div className={`dropdown-wrapper ${teknisetAuki ? "auki" : ""}`}>
+              <div className="dropdown-sisalto">
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1fr",
+                    gap: "10px 20px",
+                    fontSize: "14px",
+                    color: "var(--text-color)",
+                  }}
+                >
+                  <div>
+                    <strong>Tyyppi:</strong> Riippuvalaisin
+                  </div>
+                  <div>
+                    <strong>Lampun kanta:</strong> E27
+                  </div>
+                  <div>
+                    <strong>Halkaisija:</strong> {tuote.halkaisija}
+                  </div>
+                  <div>
+                    <strong>Max. teho:</strong> 15W LED
+                  </div>
+                  <div>
+                    <strong>Korkeus:</strong> {tuote.korkeus}
+                  </div>
+                  <div>
+                    <strong>IP-luokka:</strong> IP20
+                  </div>
+                  <div>
+                    <strong>Johdon pituus:</strong> 80 cm
+                  </div>
+                  <div>
+                    <strong>Takuu:</strong> 1 vuosi
+                  </div>
+                </div>
+                <div
+                  style={{
+                    marginTop: "15px",
+                    fontSize: "13px",
+                    color: "#888",
+                    fontStyle: "italic",
+                  }}
+                >
+                  * Valonlähde ei sisälly pakkaukseen.
+                </div>
+              </div>
             </div>
           </div>
 
@@ -323,7 +463,7 @@ export default function TuoteSivu({ params: paramsPromise }) {
                 boxShadow: "0 4px 15px rgba(62, 39, 35, 0.15)",
               }}
             >
-              SIIRRY TILAAMAAN HOLVI-KAUPPAAN ({aktiivinenVariantti.vari}) →
+              SIIRRY TILAAMAAN HOLVI-KAUPPAAN →
             </a>
             <p
               style={{

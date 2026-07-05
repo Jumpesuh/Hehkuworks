@@ -5,12 +5,12 @@ const slides = [
   {
     title: "Suomalaista Puuta",
     text: "Käsityönä valmistetut valaisimet Pohjolan puusta.",
-    img: "https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&w=1600&q=80",
+    img: "images/metsa.png",
   },
   {
     title: "Aitoa Tunnelmaa",
     text: "Luonnonläheinen valo jokaiseen kotiin.",
-    img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80",
+    img: "images/lamppu.png",
   },
 ];
 
