@@ -6,18 +6,18 @@ export default function Footer() {
           <div>
             <h3 style={{ color: "white" }}>HEHKUWORKS</h3>
             <p>
-              Aitoa suomalaista käsityötä vuodesta 2024. Jokainen valaisin on
+              Aitoa suomalaista käsityötä vuodesta 2026. Jokainen valaisin on
               lupaus laadusta ja luonnon kunnioituksesta.
             </p>
           </div>
           <div>
             <h3>Yhteystiedot</h3>
             <p>
-              Verstas & Showroom:
+              Tehdas:
               <br />
-              Puusepänkatu 5, Hollola
+              Sannaksentie 36 B, Kirkkonummi
               <br />
-              info@hehkuworks.fi
+              Asiakaspalvelu@hehkuworks.fi
             </p>
           </div>
           <div>
@@ -30,7 +30,7 @@ export default function Footer() {
                 <a href="#">Toimitusehdot</a>
               </li>
               <li>
-                <a href="#">Y-tunnus: 3456789-0</a>
+                <a href="#">Y-tunnus: 3618786-6</a>
               </li>
             </ul>
           </div>

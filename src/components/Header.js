@@ -6,13 +6,18 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header>
+    // Lisätty paddingTop: "20px"
+    <header style={{ paddingTop: "20px" }}> 
       <div className="container header-content">
         {/* CSS-LOGOTOTEUTUS */}
         <Link
           href="/"
           className="logo-container"
           onClick={() => setIsMenuOpen(false)}
+          // LOGON KOON MUOKKAUS:
+          // Voit suurentaa tai pienentää logoa muuttamalla scale-arvoa.
+          // 1 = normaali koko, 1.2 = 20% isompi, 0.8 = 20% pienempi.
+          style={{ transform: "scale(1.4)", transformOrigin: "left center" }} 
         >
           {/* Valonsäteet (7 kappaletta kuten kuvassa) */}
           <div className="sun-rays">
@@ -32,13 +37,31 @@ export default function Header() {
         <nav className={isMenuOpen ? "active" : ""}>
           <ul>
             <li>
-              <Link href="/" onClick={() => setIsMenuOpen(false)}>
+              <Link 
+                href="/" 
+                onClick={() => setIsMenuOpen(false)}
+                style={{ fontSize: "20px" }} // Etusivu-tekstin koko
+              >
                 Etusivu
               </Link>
             </li>
             <li>
-              <Link href="/mallisto" onClick={() => setIsMenuOpen(false)}>
+              <Link 
+                href="/mallisto" 
+                onClick={() => setIsMenuOpen(false)}
+                style={{ fontSize: "20px" }} // Mallisto-tekstin koko
+              >
                 Mallisto
+              </Link>
+            </li>
+            {/* UUSI YRITYSASIAKKAAT -LINKKI */}
+            <li>
+              <Link 
+                href="/yritysasiakkaat" 
+                onClick={() => setIsMenuOpen(false)}
+                style={{ fontSize: "20px" }} // Yritysasiakkaat-tekstin koko
+              >
+                Yritysasiakkaat
               </Link>
             </li>
           </ul>

@@ -5,12 +5,14 @@ const slides = [
   {
     title: "Suomalaista Puuta",
     text: "Käsityönä valmistetut valaisimet Pohjolan puusta.",
-    img: "images/metsa.png",
+    // KORJAUS: Lisätty kauttaviiva (/) polun alkuun
+    img: "/images/koivukuva.png", 
   },
   {
     title: "Aitoa Tunnelmaa",
     text: "Luonnonläheinen valo jokaiseen kotiin.",
-    img: "images/lamppu.png",
+    // KORJAUS: Lisätty kauttaviiva (/) polun alkuun
+    img: "/images/lamppu.png", 
   },
 ];
 
@@ -45,9 +47,16 @@ export default function Hero() {
             color: "white",
           }}
         >
-          <div className="hero-overlay">
-            <h2>{slide.title}</h2>
-            <p>{slide.text}</p>
+          <div className="hero-overlay" style={{ textAlign: "center" }}>
+            {/* OTSIKKO */}
+            <h2 style={{ fontSize: "32px", margin: "0 0 15px 0" }}>
+              {slide.title}
+            </h2>
+            
+            {/* NORMI TEKSTI */}
+            <p style={{ fontSize: "20px", margin: 0 }}>
+              {slide.text}
+            </p>
           </div>
         </div>
       ))}

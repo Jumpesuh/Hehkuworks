@@ -3,7 +3,7 @@ import { useState, use } from "react";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import Image from "next/image"; // Korjaa ESLint no-img-element -virheen
+import Image from "next/image"; 
 import "swiper/css";
 import "swiper/css/navigation";
 
@@ -225,12 +225,52 @@ export default function TuoteSivu({ params: paramsPromise }) {
   const vaihdaVariantti = (variantti) => {
     setValittuVariantti(variantti);
     if (swiperInstance) {
-      swiperInstance.slideToLoop(variantti.kuvaIndeksi, 400); // Rullaa karuselissa oikeaan väriin
+      swiperInstance.slideToLoop(variantti.kuvaIndeksi, 400); 
     }
   };
 
   return (
     <main className="container" style={{ padding: "60px 0" }}>
+      {/* GLOBAALIT TYYLIT TUOTESIVULLE (Sinisen välkynnän poisto & nuolien tyylit) */}
+      <style jsx global>{`
+        a, button, .swiper-wrapper, .swiper-slide, .mySwiper {
+          -webkit-tap-highlight-color: transparent;
+          outline: none;
+        }
+        
+        .custom-nav-arrow {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 10;
+          background: transparent; 
+          border: none;
+          width: 70px; 
+          height: 90px; 
+          border-radius: 6px;
+          cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: #ffffff; 
+          text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5); 
+          font-size: 50px; 
+          pointer-events: auto; 
+          opacity: 0; 
+          transition: all 0.3s ease; 
+        }
+
+        .karuselli-container:hover .custom-nav-arrow {
+          opacity: 1;
+        }
+
+        .custom-nav-arrow:hover {
+          background: rgba(0, 0, 0, 0.25); 
+          color: #ffffff;
+        }
+      `}</style>
+
+      {/* PALUULINKKI */}
       <Link
         href="/mallisto"
         style={{
@@ -238,22 +278,31 @@ export default function TuoteSivu({ params: paramsPromise }) {
           marginBottom: "30px",
           color: "#a67c52",
           fontWeight: "bold",
+          fontSize: "16px",
         }}
       >
         ← Takaisin mallistoon
       </Link>
 
       <div className="tuotesivu-layout">
-        {/* VASEN PUOLI: KUVASARJA */}
+        {/* VASEN PUOLI: KUVASARJA - Lisätty 'karuselli-container' ja 'position: relative' */}
         <div
-          className="tuotesivu-media tuotekortti-container"
-          style={{ width: "100%", maxWidth: "450px" }}
+          className="tuotesivu-media karuselli-container"
+          style={{ width: "100%", maxWidth: "450px", position: "relative" }}
         >
           <Swiper
             modules={[Navigation]}
-            navigation={tuote.kuvat.length > 1}
+            navigation={false} // Otetaan oletusnuolet pois käytöstä
             loop={tuote.kuvat.length > 1}
             onSwiper={setSwiperInstance}
+            onSlideChange={(swiper) => {
+              const nykyinenIndeksi = swiper.realIndex;
+              if (nykyinenIndeksi >= 2) {
+                setValittuVariantti(tuote.variantit[1]); 
+              } else {
+                setValittuVariantti(tuote.variantit[0]); 
+              }
+            }}
             className="mySwiper"
             style={{
               width: "100%",
@@ -283,36 +332,68 @@ export default function TuoteSivu({ params: paramsPromise }) {
               </SwiperSlide>
             ))}
           </Swiper>
+
+          {/* OMAT SUURET NAVIGOINTINAPIT */}
+          {tuote.kuvat.length > 1 && (
+            <>
+              <button
+                className="custom-nav-arrow"
+                onClick={(e) => {
+                  e.preventDefault();
+                  swiperInstance?.slidePrev();
+                }}
+                style={{ left: "5px" }}
+                aria-label="Edellinen kuva"
+              >
+                ‹
+              </button>
+              <button
+                className="custom-nav-arrow"
+                onClick={(e) => {
+                  e.preventDefault();
+                  swiperInstance?.slideNext();
+                }}
+                style={{ right: "5px" }}
+                aria-label="Seuraava kuva"
+              >
+                ›
+              </button>
+            </>
+          )}
         </div>
 
         {/* OIKEA PUOLI: TUOTTEEN TIEDOT */}
         <div className="tuotesivu-info" style={{ maxWidth: "550px" }}>
+          {/* YLÄOTSIKKO */}
           <span
             style={{
               color: "#a67c52",
               fontWeight: "bold",
               textTransform: "uppercase",
-              fontSize: "14px",
+              fontSize: "16px",
             }}
           >
             HEHKUWORKS Mallisto
           </span>
+          
+          {/* PÄÄOTSIKKO */}
           <h1
             style={{
               margin: "10px 0 20px 0",
-              fontSize: "36px",
+              fontSize: "32px",
               color: "#3e2723",
             }}
           >
             {tuote.nimi}
           </h1>
 
+          {/* TUOTEKUVAUS */}
           {tuote.kuvaus && (
             <p
               style={{
                 color: "#555",
                 marginBottom: "30px",
-                fontSize: "16px",
+                fontSize: "20px",
                 lineHeight: "1.8",
               }}
             >
@@ -320,9 +401,10 @@ export default function TuoteSivu({ params: paramsPromise }) {
             </p>
           )}
 
+          {/* HINTA */}
           <p
             style={{
-              fontSize: "26px",
+              fontSize: "32px",
               fontWeight: "bold",
               color: "var(--primary-color)",
               margin: "10px 0 25px 0",
@@ -338,9 +420,10 @@ export default function TuoteSivu({ params: paramsPromise }) {
               marginTop: tuote.kuvaus ? "0" : "20px",
             }}
           >
+            {/* VÄRIVALINTA OTSIKKO */}
             <h3
               style={{
-                fontSize: "14px",
+                fontSize: "16px",
                 marginBottom: "15px",
                 color: "#3e2723",
               }}
@@ -360,7 +443,7 @@ export default function TuoteSivu({ params: paramsPromise }) {
             </div>
           </div>
 
-          {/* TEKNISET TIEDOT (SUPERMINIMALISTINEN & NUOLI LÄHELLÄ) */}
+          {/* TEKNISET TIEDOT */}
           <div style={{ marginBottom: "35px" }}>
             <div
               onClick={() => setTeknisetAuki(!teknisetAuki)}
@@ -379,7 +462,7 @@ export default function TuoteSivu({ params: paramsPromise }) {
                   fontWeight: "bold",
                   color: "var(--primary-color)",
                   letterSpacing: "0.05em",
-                  fontSize: "14px",
+                  fontSize: "16px",
                 }}
               >
                 TEKNISET TIEDOT
@@ -389,7 +472,7 @@ export default function TuoteSivu({ params: paramsPromise }) {
                   transform: teknisetAuki ? "rotate(180deg)" : "rotate(0deg)",
                   transition: "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                   color: "var(--accent-color)",
-                  fontSize: "10px",
+                  fontSize: "12px",
                   display: "inline-block",
                 }}
               >
@@ -404,39 +487,23 @@ export default function TuoteSivu({ params: paramsPromise }) {
                     display: "grid",
                     gridTemplateColumns: "1fr 1fr",
                     gap: "10px 20px",
-                    fontSize: "14px",
+                    fontSize: "16px",
                     color: "var(--text-color)",
                   }}
                 >
-                  <div>
-                    <strong>Tyyppi:</strong> Riippuvalaisin
-                  </div>
-                  <div>
-                    <strong>Lampun kanta:</strong> E27
-                  </div>
-                  <div>
-                    <strong>Halkaisija:</strong> {tuote.halkaisija}
-                  </div>
-                  <div>
-                    <strong>Max. teho:</strong> 15W LED
-                  </div>
-                  <div>
-                    <strong>Korkeus:</strong> {tuote.korkeus}
-                  </div>
-                  <div>
-                    <strong>IP-luokka:</strong> IP20
-                  </div>
-                  <div>
-                    <strong>Johdon pituus:</strong> 80 cm
-                  </div>
-                  <div>
-                    <strong>Takuu:</strong> 1 vuosi
-                  </div>
+                  <div><strong>Tyyppi:</strong> Riippuvalaisin</div>
+                  <div><strong>Lampun kanta:</strong> E27</div>
+                  <div><strong>Halkaisija:</strong> {tuote.halkaisija}</div>
+                  <div><strong>Max. teho:</strong> 15W LED</div>
+                  <div><strong>Korkeus:</strong> {tuote.korkeus}</div>
+                  <div><strong>IP-luokka:</strong> IP20</div>
+                  <div><strong>Johdon pituus:</strong> 80 cm</div>
+                  <div><strong>Takuu:</strong> 1 vuosi</div>
                 </div>
                 <div
                   style={{
                     marginTop: "15px",
-                    fontSize: "13px",
+                    fontSize: "16px",
                     color: "#888",
                     fontStyle: "italic",
                   }}
@@ -458,7 +525,7 @@ export default function TuoteSivu({ params: paramsPromise }) {
                 display: "block",
                 textAlign: "center",
                 padding: "18px 30px",
-                fontSize: "14px",
+                fontSize: "14px", 
                 fontWeight: "bold",
                 boxShadow: "0 4px 15px rgba(62, 39, 35, 0.15)",
               }}
@@ -467,7 +534,7 @@ export default function TuoteSivu({ params: paramsPromise }) {
             </a>
             <p
               style={{
-                fontSize: "12px",
+                fontSize: "16px",
                 color: "#888",
                 textAlign: "center",
                 marginTop: "12px",

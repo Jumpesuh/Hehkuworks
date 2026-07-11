@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import { useRef } from "react";
 
 const MALLISTO_TUOTTEET = [
   {
@@ -81,104 +82,222 @@ const MALLISTO_TUOTTEET = [
 export default function MallistoPage() {
   return (
     <main>
+      <style jsx global>{`
+        a, button, .swiper-wrapper, .swiper-slide, .mySwiper {
+          -webkit-tap-highlight-color: transparent;
+          outline: none;
+        }
+        
+        /* OMIEN NUOLTEN TYYLIT JA HOVER-EFEKTIT */
+        .custom-nav-arrow {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 10;
+          background: transparent; 
+          border: none;
+          
+          /* KLIKKAUSALUE */
+          width: 70px; 
+          height: 90px; 
+          border-radius: 6px;
+          cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          
+          /* VALKOINEN NUOLI & PEHMEÄ VARJO */
+          color: #ffffff; 
+          text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5); 
+          font-size: 50px; 
+          
+          pointer-events: auto; 
+          opacity: 0; 
+          transition: all 0.3s ease; 
+        }
+
+        /* 1. KORJAUS: Nuolet esiin kun hiiri on MISTÄ TAHANSA KOHTAA KORTIN PÄÄLLÄ */
+        .tuotekortti-container:hover .custom-nav-arrow {
+          opacity: 1;
+        }
+
+        /* 2. Harmaa laatikko kun hiiri on itse nuolen päällä */
+        .custom-nav-arrow:hover {
+          background: rgba(0, 0, 0, 0.25); 
+          color: #ffffff;
+        }
+      `}</style>
+
       <div className="container" style={{ padding: "60px 0" }}>
-        <h2 style={{ textAlign: "center", marginBottom: "50px" }}>
+        <h2 style={{ textAlign: "center", marginBottom: "50px", fontSize: "32px" }}>
           Valaisinmallisto
         </h2>
 
         <div className="product-grid">
-          {MALLISTO_TUOTTEET.map((tuote) => (
-            <div
-              key={tuote.id}
-              className="mallisto-linkki-kortti tuotekortti-container"
-              style={{
-                background: "white",
-                border: "1px solid #eee",
-                textAlign: "center",
-                overflow: "hidden",
-              }}
-            >
-              {/* KUVAKARUSELLI ALKAA */}
-              <div style={{ position: "relative", width: "100%" }}>
-                {tuote.kuvat.length > 0 ? (
-                  <Swiper
-                    modules={[Navigation]}
-                    navigation={tuote.kuvat.length > 1}
-                    loop={tuote.kuvat.length > 1}
-                    className="mySwiper"
-                    style={{ width: "100%", height: "auto" }}
-                  >
-                    {tuote.kuvat.map((kuvaUrl, index) => (
-                      <SwiperSlide
-                        key={index}
-                        style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                        }}
-                      >
-                        <img
-                          src={kuvaUrl}
-                          alt={`${tuote.nimi} valaisinkuva ${index + 1}`}
-                          style={{
-                            width: "100%",
-                            height: "auto",
-                            display: "block",
-                            objectFit: "contain",
-                          }}
-                        />
-                      </SwiperSlide>
-                    ))}
-                  </Swiper>
-                ) : (
-                  <div
-                    style={{
-                      width: "100%",
-                      height: "250px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "#aaa",
-                      fontSize: "14px",
-                      background: "#f5f5f5",
-                    }}
-                  >
-                    Ei kuvia lisätty
-                  </div>
-                )}
-              </div>
+          {MALLISTO_TUOTTEET.map((tuote) => {
+            const swiperRef = useRef(null);
 
-              {/* TUOTTEEN TIEDOT & LINKKI */}
-              <Link
-                href={`/mallisto/${tuote.id}`}
+            return (
+              <div
+                key={tuote.id}
+                className="tuotekortti-container" /* TÄMÄ ON NYT TRIGGERI NUOLILLE */
                 style={{
-                  display: "block",
-                  padding: "25px",
+                  background: "white",
+                  border: "1px solid #eee",
+                  textAlign: "center",
+                  overflow: "hidden",
                   position: "relative",
-                  zIndex: 10,
+                  WebkitTapHighlightColor: "transparent",
                 }}
               >
-                <h3 style={{ margin: "0 0 5px 0", color: "#3e2723" }}>
-                  {tuote.nimi}
-                </h3>
-                <p
+                {/* 1. KOKO KORTIN LINKKI */}
+                <Link
+                  href={`/mallisto/${tuote.id}`}
                   style={{
-                    color: "#a67c52",
-                    margin: "0 0 15px 0",
-                    fontSize: "14px",
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    zIndex: 1,
+                    display: "block",
+                    textDecoration: "none",
+                  }}
+                  aria-label={`Siirry tuotteeseen ${tuote.nimi}`}
+                />
+
+                {/* 2. KUVAKARUSELLI */}
+                <div 
+                  style={{ 
+                    position: "relative", 
+                    width: "100%",
+                    zIndex: 2, 
+                    pointerEvents: "none" 
                   }}
                 >
-                  Puu | Musta
-                </p>
-                <span
-                  className="btn-view"
-                  style={{ display: "block", width: "auto" }}
+                  {tuote.kuvat.length > 0 ? (
+                    <div style={{ position: "relative" }}>
+                      <Swiper
+                        onSwiper={(swiper) => {
+                          swiperRef.current = swiper;
+                        }}
+                        modules={[Navigation]}
+                        navigation={false} 
+                        loop={tuote.kuvat.length > 1}
+                        className="mySwiper"
+                        style={{ width: "100%", height: "auto" }}
+                      >
+                        {tuote.kuvat.map((kuvaUrl, index) => (
+                          <SwiperSlide
+                            key={index}
+                            style={{
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                            }}
+                          >
+                            <img
+                              src={kuvaUrl}
+                              alt={`${tuote.nimi} valaisinkuva ${index + 1}`}
+                              style={{
+                                width: "100%",
+                                height: "auto",
+                                display: "block",
+                                objectFit: "contain",
+                              }}
+                            />
+                          </SwiperSlide>
+                        ))}
+                      </Swiper>
+
+                      {/* 3. OMAT NAVIGOINTINAPIT */}
+                      {tuote.kuvat.length > 1 && (
+                        <>
+                          <button
+                            className="custom-nav-arrow"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              swiperRef.current?.slidePrev();
+                            }}
+                            style={{ left: "5px" }}
+                            aria-label="Edellinen kuva"
+                          >
+                            ‹
+                          </button>
+                          <button
+                            className="custom-nav-arrow"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              swiperRef.current?.slideNext();
+                            }}
+                            style={{ right: "5px" }}
+                            aria-label="Seuraava kuva"
+                          >
+                            ›
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  ) : (
+                    <div
+                      style={{
+                        width: "100%",
+                        height: "250px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "#aaa",
+                        fontSize: "14px",
+                        background: "#f5f5f5",
+                        pointerEvents: "none",
+                      }}
+                    >
+                      Ei kuvia lisätty
+                    </div>
+                  )}
+                </div>
+
+                {/* 4. TUOTTEEN TIEDOT */}
+                <div
+                  style={{
+                    display: "block",
+                    padding: "25px",
+                    position: "relative",
+                    zIndex: 2, 
+                    pointerEvents: "none", 
+                  }}
                 >
-                  Katso ja tilaa
-                </span>
-              </Link>
-            </div>
-          ))}
+                  <h3 style={{ margin: "0 0 5px 0", color: "#3e2723", fontSize: "32px" }}>
+                    {tuote.nimi}
+                  </h3>
+                  
+                  <p
+                    style={{
+                      color: "#a67c52",
+                      margin: "0 0 15px 0",
+                      fontSize: "16px",
+                    }}
+                  >
+                    Puu | Musta
+                  </p>
+                  
+                  <span
+                    className="btn-view"
+                    style={{ 
+                      display: "block", 
+                      width: "auto", 
+                      fontSize: "16px",
+                      pointerEvents: "none", 
+                    }}
+                  >
+                    Katso ja tilaa
+                  </span>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </main>
