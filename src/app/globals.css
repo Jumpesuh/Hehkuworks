@@ -18,6 +18,11 @@ body {
     overflow-x: hidden;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 h1, h2, h3 { 
     letter-spacing: 1px; 
     text-transform: uppercase;
@@ -51,6 +56,7 @@ header {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    position: relative;
 }
 
 .logo { 
@@ -99,32 +105,35 @@ nav a:hover { color: var(--accent-color); }
     cursor: pointer;
 }
 
-/* --- HERO-KARUSELLI (KORJATTU FADE-SLIDERILLE) --- */
+/* --- HERO-KARUSELLI --- */
 .hero-container {
     position: relative;
     width: 100%;
-    height: 550px; /* Korkeus tietokoneella */
+    height: 550px; 
     overflow: hidden;
     background-color: var(--bg-color);
 }
 
 .hero-slide {
-    /* Pakotetaan taustakuva asettumaan nätisti ja estetään monistuminen */
     background-repeat: no-repeat !important;
-    background-position: center center !important; /* Pitää valaisimen aina keskellä slidea */
-    background-size: cover !important; /* Skaalaa kuvan täyttämään alueen smoothisti */
+    background-position: center center !important; 
+    background-size: cover !important; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Tyylikäs ja tasapainoinen tekstilaatikko kuvan päällä */
 .hero-overlay {
-    background: rgba(62, 39, 35, 0.45); /* Brändin mukainen pehmeä tummanruskea */
+    background: rgba(62, 39, 35, 0.45); 
     padding: 35px 60px;
-    border: 1px solid rgba(224, 201, 166, 0.3); /* Siro reuna */
-    backdrop-filter: blur(4px); /* Lasimainen pehmennys taustalle */
+    border: 1px solid rgba(224, 201, 166, 0.3); 
+    backdrop-filter: blur(4px); 
     -webkit-backdrop-filter: blur(4px);
     color: white;
     text-align: center;
     max-width: 90%;
+    margin: 0 auto;
+    box-sizing: border-box; 
 }
 
 .hero-overlay h2 { 
@@ -139,26 +148,6 @@ nav a:hover { color: var(--accent-color); }
     margin: 0;
     font-size: 16px;
     opacity: 0.9;
-}
-
-/* Mobiilioptimointi (Puhelimet) */
-@media (max-width: 768px) {
-    .hero-container {
-        height: 400px; /* Madalletaan ruutua mobiilissa, ettei kuva zoomaannu liikaa */
-    }
-    
-    .hero-overlay {
-        padding: 25px 30px;
-    }
-    
-    .hero-overlay h2 { 
-        font-size: 26px; 
-        letter-spacing: 1px;
-    }
-    
-    .hero-overlay p {
-        font-size: 14px;
-    }
 }
 
 /* --- PAINIKKEET --- */
@@ -195,19 +184,16 @@ nav a:hover { color: var(--accent-color); }
     transform: translateY(-5px);
 }
 
-/* --- SWIPER KARUSELLIN TYYLIT (MALLISTOSIVU) --- */
+/* --- SWIPER KARUSELLIN TYYLIT --- */
 .swiper-button-next,
 .swiper-button-prev {
     color: #ffffff !important; 
-    
     width: 28px !important;  
     height: 28px !important; 
     border-radius: 50%;
-    
     opacity: 0; 
     transition: opacity 0.2s ease; 
 }
-
 
 .swiper-button-next:after,
 .swiper-button-prev:after {
@@ -215,19 +201,38 @@ nav a:hover { color: var(--accent-color); }
     font-weight: bold;
 }
 
-
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
-    
     color: #ffffff !important; 
     cursor: pointer;
 }
-
 
 .tuotekortti-container:hover .swiper-button-next,
 .tuotekortti-container:hover .swiper-button-prev {
     opacity: 1;
 }
+
+/* SWIPER PALLOT (PAGINATION) TYYLIT */
+.swiper-pagination-bullet {
+    background: var(--light-wood) !important;
+    opacity: 0.6 !important;
+    width: 8px !important;
+    height: 8px !important;
+    margin: 0 4px !important;
+    transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--primary-color) !important;
+    opacity: 1 !important;
+    transform: scale(1.2);
+}
+
+/* Pakotetaan pallot hieman ylemmäs, etteivät mene kuvan ulkopuolelle */
+.swiper-pagination-bullets {
+    bottom: 10px !important;
+}
+
 
 /* --- TUOTESIVUN ULKOASU (TIETOKONE) --- */
 .tuotesivu-layout {
@@ -258,7 +263,6 @@ nav a:hover { color: var(--accent-color); }
     flex: 1;
 }
 
-
 .vari-nappi {
     background: white;
     border: 1px solid var(--light-wood);
@@ -280,76 +284,6 @@ nav a:hover { color: var(--accent-color); }
     background: var(--primary-color);
     border-color: var(--primary-color);
     color: white;
-}
-
-/* --- YHTEINEN MOBIILIOPTIMOINTI (PUHELIN) --- */
-@media (max-width: 768px) {
-    .hamburger { display: block; }
-    
-    nav { 
-        display: none; 
-        width: 100%; 
-        order: 3; 
-        padding-top: 20px; 
-        margin-top: 15px; 
-        border-top: 1px solid var(--light-wood); 
-    }
-    
-    nav.active { display: block; }
-    nav ul { flex-direction: column; gap: 20px; }
-    
-    .hero-container { height: 400px; }
-    .hero-overlay h2 { font-size: 32px; }
-
-    
-    .swiper-button-next,
-    .swiper-button-prev {
-        opacity: 1;
-        width: 30px !important;
-        height: 30px !important;
-    }
-    .swiper-button-next:after,
-    .swiper-button-prev:after {
-        font-size: 14px !important;
-    }
-
-    
-    .tuotesivu-layout {
-        flex-direction: column;
-        gap: 40px;
-        align-items: center;
-        text-align: center;
-    }
-
-    .tuotesivu-media {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        order: 1;
-    }
-
-    .tuotesivu-info {
-        width: 100%;
-        order: 2;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    
-    .tuotesivu-info > div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-    }
-
-    .tuotesivu-info div div {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
 }
 
 /* --- FOOTER --- */
@@ -375,27 +309,23 @@ footer {
     opacity: 0.7; 
 }
 
-
 /* --- SIMPPELI DROPDOWN TYYLI --- */
 .simppeli-dropdown-otsikko:hover span {
     color: var(--accent-color) !important;
     transition: color 0.2s ease;
 }
 
-/* Kääre toimii animaation ankkurina */
 .dropdown-wrapper {
     display: grid;
-    grid-template-rows: 0fr; /* Oletuksena täysin kiinni */
+    grid-template-rows: 0fr; 
     overflow: hidden;
     transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Kun luokka .auki aktivoituu, grid-rivi laajenee pehmeästi sisällön vaatimaan mittaan */
 .dropdown-wrapper.auki {
     grid-template-rows: 1fr;
 }
 
-/* Itse sisältöalue, joka vain liukuu esiin kääreen sisältä */
 .dropdown-sisalto {
     min-height: 0;
     padding-bottom: 20px;
@@ -404,12 +334,10 @@ footer {
     transition: opacity 0.25s ease;
 }
 
-/* Kun kääre on auki, häivytetään tekstit pehmeästi näkyviin */
 .dropdown-wrapper.auki .dropdown-sisalto {
     opacity: 1;
     transition: opacity 0.3s ease 0.05s; 
 }
-
 
 /* --- CSS LOGO (HEHKUWORKS) --- */
 .logo-container {
@@ -420,15 +348,14 @@ footer {
     text-decoration: none;
     cursor: pointer;
     position: relative;
-    padding-top: 18px; /* Jätetään tilaa yläpuolen säteille */
+    padding-top: 18px; 
     transition: transform 0.2s ease;
 }
 
 .logo-container:hover {
-    transform: scale(1.02); /* Kevyt eloonherääminen vietäessä hiiri päälle */
+    transform: scale(1.02); 
 }
 
-/* Valonsäteiden keskipiste ja asettelu */
 .sun-rays {
     position: absolute;
     top: 0;
@@ -438,44 +365,172 @@ footer {
     height: 20px;
 }
 
-/* Yleiset säännöt yksittäiselle säteelle */
 .ray {
     position: absolute;
     bottom: 0;
     left: 50%;
     width: 2px;
-    height: 10px; /* Säteen pituus */
-    background-color: #ff6d00; /* Kuvan mukainen lämmin oranssi */
+    height: 10px; 
+    background-color: #ff6d00; 
     border-radius: 2px;
     transform-origin: bottom center;
 }
 
-/* Säteiden kulmat ja paikat kaaressa (7 sädettä viuhkana) */
 .ray-1 { transform: translateX(-50%) rotate(-75deg) translateY(-8px); }
 .ray-2 { transform: translateX(-50%) rotate(-50deg) translateY(-8px); }
 .ray-3 { transform: translateX(-50%) rotate(-25deg) translateY(-8px); }
-.ray-4 { transform: translateX(-50%) rotate(0deg)   translateY(-8px); } /* Keskimmäinen pystysuora */
+.ray-4 { transform: translateX(-50%) rotate(0deg)   translateY(-8px); } 
 .ray-5 { transform: translateX(-50%) rotate(25deg)  translateY(-8px); }
 .ray-6 { transform: translateX(-50%) rotate(50deg)  translateY(-8px); }
 .ray-7 { transform: translateX(-50%) rotate(75deg)  translateY(-8px); }
 
-/* HEHKU -tekstin tyylittely */
 .logo-text-hehku {
     font-size: 28px;
-    font-weight: 400; /* Tasapainoinen, ei liian paksu */
+    font-weight: 400; 
     color: var(--primary-color, #3e2723);
-    letter-spacing: 5px; /* Leveä, elegantti kirjasinväli */
+    letter-spacing: 5px; 
     line-height: 1;
-    text-indent: 5px; /* Keskittää tekstin täydellisesti kun letter-spacing on käytössä */
+    text-indent: 5px; 
 }
 
-/* WORKS -tekstin tyylittely */
 .logo-text-works {
     font-size: 14px;
     font-weight: 400;
     color: var(--primary-color, #3e2723);
-    letter-spacing: 7px; /* Vielä hieman leveämpi, jotta täyttää saman leveyden */
+    letter-spacing: 7px; 
     line-height: 1;
-    margin-top: 5px; /* Väli HEHKU-sanan alle */
+    margin-top: 5px; 
     text-indent: 7px;
+}
+
+/* =========================================
+   YHTEINEN MOBIILIOPTIMOINTI (PUHELIN)
+   ========================================= */
+@media (max-width: 768px) {
+    
+    /* Yläpalkki ja navigointi */
+    .hamburger { 
+        display: block; 
+    }
+    
+    nav { 
+        display: none; 
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-color);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        padding: 20px 0;
+        z-index: 1000;
+        border-top: 1px solid var(--light-wood);
+    }
+    
+    nav.active { 
+        display: block; 
+    }
+    
+    nav ul { 
+        flex-direction: column; 
+        gap: 20px; 
+        align-items: center; 
+    }
+
+    .logo-container {
+        transform: scale(1) !important; 
+    }
+    
+    /* Hero-osio */
+    .hero-container { 
+        height: 400px; 
+    }
+    
+    .hero-overlay { 
+        padding: 25px 20px; 
+        width: 85%; 
+        margin: 0 auto; 
+    }
+    
+    .hero-overlay h2 { 
+        font-size: 26px; 
+        letter-spacing: 1px; 
+    }
+    
+    .hero-overlay p { 
+        font-size: 14px; 
+    }
+
+    /* Tuotekorttien, kuvien JA painikkeiden kavennus */
+    .product-grid {
+        padding: 0 15px; 
+    }
+
+    .mallisto-linkki-kortti,
+    .tuotekortti-container,
+    .tuotesivu-media,
+    .single-holvi-card,
+    .btn-view {
+        width: 90% !important;
+        margin: 0 auto !important; 
+        display: block;
+        box-sizing: border-box;
+    }
+
+    /* PIILOTETAAN NUOLET MOBIILISSA KOKONAAN */
+    .swiper-button-next,
+    .swiper-button-prev,
+    .custom-nav-arrow {
+        display: none !important;
+    }
+
+    /* Pakotetaan Dropdown aina auki mobiilissa */
+    .dropdown-wrapper {
+        grid-template-rows: 1fr !important;
+    }
+    .dropdown-sisalto {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    .simppeli-dropdown-otsikko {
+        pointer-events: none; 
+    }
+    .simppeli-dropdown-otsikko span {
+        display: none !important; 
+    }
+
+    /* Tuotesivu */
+    .tuotesivu-layout {
+        flex-direction: column;
+        gap: 40px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .tuotesivu-media {
+        display: flex;
+        justify-content: center;
+        order: 1;
+    }
+
+    .tuotesivu-info {
+        width: 100%; 
+        order: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tuotesivu-info > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .tuotesivu-info div div {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
 }

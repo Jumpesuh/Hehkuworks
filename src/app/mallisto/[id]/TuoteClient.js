@@ -2,10 +2,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import Image from "next/image";
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/pagination"; 
 
 export default function TuoteClient({ tuote }) {
   const [valittuVariantti, setValittuVariantti] = useState(
@@ -42,7 +43,6 @@ export default function TuoteClient({ tuote }) {
 
   return (
     <main className="container" style={{ padding: "60px 0" }}>
-      {/* KORJATTU TYYLITYS: Ei enää 'jsx global' vaan tavallinen style-tagi */}
       <style
         dangerouslySetInnerHTML={{
           __html: `
@@ -90,6 +90,7 @@ export default function TuoteClient({ tuote }) {
         style={{
           display: "inline-block",
           marginBottom: "30px",
+          marginLeft: "15px", // TÄMÄ LISÄTTY: Työntää linkkiä irti reunasta
           color: "#a67c52",
           fontWeight: "bold",
           fontSize: "16px",
@@ -104,8 +105,9 @@ export default function TuoteClient({ tuote }) {
           style={{ width: "100%", maxWidth: "450px", position: "relative" }}
         >
           <Swiper
-            modules={[Navigation]}
+            modules={[Navigation, Pagination]}
             navigation={false}
+            pagination={{ clickable: true }} 
             loop={tuote.kuvat.length > 1}
             onSwiper={setSwiperInstance}
             onSlideChange={(swiper) => {
@@ -146,6 +148,7 @@ export default function TuoteClient({ tuote }) {
             ))}
           </Swiper>
 
+          {/* Tietokoneen sivunuolet (Mobiilissa piilossa CSS:n avulla) */}
           {tuote.kuvat.length > 1 && (
             <>
               <button
@@ -235,7 +238,7 @@ export default function TuoteClient({ tuote }) {
             >
               Valitse väri / viimeistely:
             </h3>
-            <div style={{ display: "flex", gap: "10px" }}>
+            <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", justifyContent: "center" }}>
               {tuote.variantit.map((variantti) => (
                 <button
                   key={variantti.vari}
@@ -248,7 +251,7 @@ export default function TuoteClient({ tuote }) {
             </div>
           </div>
 
-          <div style={{ marginBottom: "35px" }}>
+          <div style={{ marginBottom: "35px", width: "100%" }}>
             <div
               onClick={() => setTeknisetAuki(!teknisetAuki)}
               style={{
@@ -293,6 +296,7 @@ export default function TuoteClient({ tuote }) {
                     gap: "10px 20px",
                     fontSize: "16px",
                     color: "var(--text-color)",
+                    textAlign: "left"
                   }}
                 >
                   <div>
@@ -326,6 +330,7 @@ export default function TuoteClient({ tuote }) {
                     fontSize: "16px",
                     color: "#888",
                     fontStyle: "italic",
+                    textAlign: "center"
                   }}
                 >
                   * Valonlähde ei sisälly pakkaukseen.
