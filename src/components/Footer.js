@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="container">
         <div className="footer-cols">
           <div>
-            <h3 style={{ color: "white" }}>HEHKUWORKS</h3>
+            <h3 style={{ color: "white" }}>HEHKU WORKS</h3>
             <p>
               Aitoa suomalaista käsityötä vuodesta 2026. Jokainen valaisin on
               lupaus laadusta ja luonnon kunnioituksesta.
@@ -36,7 +36,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          &copy; 2026 HEHKUWORKS Oy - Kaikki oikeudet pidätetään.
+          &copy; 2026 HEHKU WORKS Oy - Kaikki oikeudet pidätetään.
         </div>
       </div>
     </footer>

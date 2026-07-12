@@ -186,7 +186,7 @@ export default function TuoteClient({ tuote }) {
               fontSize: "16px",
             }}
           >
-            HEHKUWORKS Mallisto
+            HEHKU WORKS Mallisto
           </span>
 
           <h1

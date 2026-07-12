@@ -17,7 +17,7 @@ export default function Yritysasiakkaat() {
               fontSize: "20px",
             }}
           >
-            B2B - HehkuWorks
+            B2B - Hehku Works
           </span>
           <h1 style={{ fontSize: "42px", marginTop: "10px", marginBottom: "20px" }}>
             Ratkaisuja yrityksille

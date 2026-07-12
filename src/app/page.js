@@ -82,7 +82,7 @@ export default function Home() {
                   >
                     <img
                       src={tuote.kuva}
-                      alt={`HehkuWorks ${tuote.nimi}`}
+                      alt={`Hehku Works ${tuote.nimi}`}
                       style={{ 
                         width: "100%", 
                         height: "100%", 
@@ -152,7 +152,7 @@ export default function Home() {
               lineHeight: "1.6" 
             }}
           >
-            HehkuWorks valmistaa suomalaisesta koivuvanerista käsin tehtyjä
+            Hehku Works valmistaa suomalaisesta koivuvanerista käsin tehtyjä
             valaisimia. Tavoitteenamme on luoda tilaan turvallinen ja pehmeä
             ilmapiiri, joka auttaa rentoutumaan arjen keskellä. Pehmeä valo
             muuttaa huoneen hetkessä rauhalliseksi, kutsuvaksi ja pörröiseksi
